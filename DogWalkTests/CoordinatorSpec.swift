@@ -28,8 +28,8 @@ class CoordinatorSpec: QuickSpec {
                 }
                 
                 context("when you call start") {
-                    it("should start the flow of a child coordinator") {
-                        expect(coordinator.start()).to(equal("start() returning"))
+                    beforeEach {
+                        coordinator.start()
                     }
                     
                     it("should add the child coordinator to the present coordinator") {

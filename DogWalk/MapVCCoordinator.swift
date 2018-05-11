@@ -11,14 +11,15 @@ import UIKit
 final class MapVCCoordinator: Coordinator {
     var navigationController: UINavigationController
     var childCoordinators = [Coordinator]()
+    var mapViewController: MapViewController
     
     init(with navigationController: UINavigationController) {
         self.navigationController = navigationController
+        self.mapViewController = MapViewController()
     }
     
-    func start() -> String {
-        return "\(#function) returning"
+    func start() {
+        navigationController.pushViewController(mapViewController, animated: true)
     }
-    
     
 }

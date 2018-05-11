@@ -16,10 +16,9 @@ final class MockCoordinator: Coordinator {
         self.navigationController = navigationController
     }
     
-    func start() -> String {
+    func start() {
         let nextCoordinator = MockCoordinator(with: navigationController)
 //        let stringForTesting = nextCoordinator.start()
         childCoordinators.append(nextCoordinator)
-        return "\(#function) returning"
     }
 }

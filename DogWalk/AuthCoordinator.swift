@@ -16,9 +16,7 @@ final class AuthCoordinator: Coordinator {
         self.navigationController = navigationController
     }
     
-    func start() -> String {
-        return "\(#function) returning"
-    }
+    func start()  {}
     
     
 }

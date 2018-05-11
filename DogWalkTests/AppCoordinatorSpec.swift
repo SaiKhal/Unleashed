@@ -20,16 +20,20 @@ class AppCoordinatorSpec: QuickSpec {
                 let coordinator: AppCoordinator = AppCoordinator(with: navController)
                 
                 it("should know if the user is logged in") {
-                    expect(coordinator.isLoggedIn).to(beFalse())
+                    expect(coordinator.isLoggedIn).to(beTrue())
                 }
                 
                 context("when you call start") {
+                    beforeEach {
+                        coordinator.childCoordinators.removeAll()
+                    }
+                    
                     context("if logged in") {
                         beforeEach {
                             coordinator.isLoggedIn = true
+                            coordinator.start()
                         }
                         it("should start map flow") {
-                            expect(coordinator.start()).to(equal("showMap() returning"))
                             expect(coordinator.childCoordinators).toNot(beEmpty())
                             expect(coordinator.childCoordinators).to(containElementSatisfying({ (coord) -> Bool in
                                 return coord is MapVCCoordinator
@@ -40,9 +44,9 @@ class AppCoordinatorSpec: QuickSpec {
                     context("if not logged in") {
                         beforeEach {
                             coordinator.isLoggedIn = false
+                            coordinator.start()
                         }
                         it("should start authentification flow") {
-                            expect(coordinator.start()).to(equal("showAuth() returning"))
                             expect(coordinator.childCoordinators).toNot(beEmpty())
                             expect(coordinator.childCoordinators).to(containElementSatisfying({ (coord) -> Bool in
                                 return coord is AuthCoordinator

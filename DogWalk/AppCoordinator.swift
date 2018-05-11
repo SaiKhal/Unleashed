@@ -17,24 +17,24 @@ final class AppCoordinator: Coordinator {
         self.navigationController = navigationController
     }
     
-    func start() -> String {
+    func start() {
         if isLoggedIn {
-            return showMap()
+            showMap()
         } else {
-            return showAuth()
+            showAuth()
         }
     }
     
-    private func showAuth() -> String {
+    private func showAuth() {
         let coordinator = AuthCoordinator(with: navigationController)
         childCoordinators.append(coordinator)
-        return "\(#function) returning"
+        coordinator.start()
     }
     
-    private func showMap() -> String {
+    private func showMap()  {
         let coordinator = MapVCCoordinator(with: navigationController)
         childCoordinators.append(coordinator)
-        return "\(#function) returning"
+        coordinator.start()
     }
     
 }

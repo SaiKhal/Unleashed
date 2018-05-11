@@ -19,12 +19,19 @@ class MapVCCoordinatorSpec: QuickSpec {
                 let navController = UINavigationController()
                 let coordinator: MapVCCoordinator = MapVCCoordinator(with: navController)
                 
-                it("should know if the user is logged in") {
-                    expect(coordinator.mapViewController).to(beTruthy())
+                it("should own a mapViewController") {
+                    expect(coordinator.mapViewController).toNot(beNil())
                 }
                 
                 context("when you call start") {
-                    expect(coordinator.navigationController.topViewController).to(equal(MapViewController))
+                    beforeEach {
+                        coordinator.start()
+                    }
+                    
+                    it("should show the mapViewController") {
+                        expect(coordinator.navigationController.topViewController)
+                            .to(beAKindOf(MapViewController.self))
+                    }
                 }
                 
             }
