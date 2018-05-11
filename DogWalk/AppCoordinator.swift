@@ -9,7 +9,7 @@
 import UIKit
 
 final class AppCoordinator: Coordinator {
-    var isLoggedIn: Bool = false
+    var isLoggedIn: Bool = true
     var navigationController: UINavigationController
     var childCoordinators = [Coordinator]()
     
