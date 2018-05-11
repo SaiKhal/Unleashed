@@ -32,7 +32,7 @@ final class AppCoordinator: Coordinator {
     }
     
     private func showMap() -> String {
-        let coordinator = MapViewControllerCoordinator(with: navigationController)
+        let coordinator = MapVCCoordinator(with: navigationController)
         childCoordinators.append(coordinator)
         return "\(#function) returning"
     }

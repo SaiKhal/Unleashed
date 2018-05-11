@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class MapViewControllerCoordinator: Coordinator {
+final class MapVCCoordinator: Coordinator {
     var navigationController: UINavigationController
     var childCoordinators = [Coordinator]()
     

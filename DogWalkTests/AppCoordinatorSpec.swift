@@ -32,7 +32,7 @@ class AppCoordinatorSpec: QuickSpec {
                             expect(coordinator.start()).to(equal("showMap() returning"))
                             expect(coordinator.childCoordinators).toNot(beEmpty())
                             expect(coordinator.childCoordinators).to(containElementSatisfying({ (coord) -> Bool in
-                                return coord is MapViewControllerCoordinator
+                                return coord is MapVCCoordinator
                             }))
                         }
                     }
