@@ -12,5 +12,6 @@ protocol Coordinator: class {
     var navigationController: UINavigationController { get set }
     var childCoordinators: [Coordinator] { get set }
     
+    init(with navigationController: UINavigationController) 
     func start() -> String
 }

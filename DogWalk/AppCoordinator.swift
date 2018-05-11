@@ -8,7 +8,8 @@
 
 import UIKit
 
-class AppCoordinator: Coordinator {
+final class AppCoordinator: Coordinator {
+    var isLoggedIn: Bool = false
     var navigationController: UINavigationController
     var childCoordinators = [Coordinator]()
     
@@ -17,9 +18,23 @@ class AppCoordinator: Coordinator {
     }
     
     func start() -> String {
-        let nextCoordinator = AppCoordinator(with: navigationController)
-        let stringForTesting = nextCoordinator.start()
-        childCoordinators.append(nextCoordinator)
+        if isLoggedIn {
+            return showMap()
+        } else {
+            return showAuth()
+        }
+    }
+    
+    private func showAuth() -> String {
+        let coordinator = AuthCoordinator(with: navigationController)
+        childCoordinators.append(coordinator)
         return "\(#function) returning"
     }
+    
+    private func showMap() -> String {
+        let coordinator = MapViewControllerCoordinator(with: navigationController)
+        childCoordinators.append(coordinator)
+        return "\(#function) returning"
+    }
+    
 }

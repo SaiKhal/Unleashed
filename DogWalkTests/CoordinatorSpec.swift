@@ -17,13 +17,13 @@ class CoordinatorSpec: QuickSpec {
         describe("A Coordinator") {
             context("after being properly initialized") {
                 let navController = UINavigationController()
-                let coordinator: Coordinator = AppCoordinator(with: navController)
+                let coordinator: Coordinator = MockCoordinator(with: navController)
                 
-                it("should have navigation controller") {
+                it("should have a navigation controller") {
                     expect(coordinator.navigationController).toNot(beNil())
                 }
                 
-                it("should have any child coordinators") {
+                it("should have no child coordinators") {
                     expect(coordinator.childCoordinators).to(beEmpty())
                 }
                 
@@ -31,11 +31,13 @@ class CoordinatorSpec: QuickSpec {
                     it("should start the flow of a child coordinator") {
                         expect(coordinator.start()).to(equal("start() returning"))
                     }
+                    
+                    it("should add the child coordinator to the present coordinator") {
+                        expect(coordinator.childCoordinators).toNot(beEmpty())
+                    }
                 }
                 
             }
-            
-            
         }
     }
 }
