@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49DF4CCA2BB25D9620C98392 /* Pods_DogWalkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65978619288C8525974EC825 /* Pods_DogWalkTests.framework */; };
 		C40BBC3A20A5E8A00039DB38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40BBC3920A5E8A00039DB38 /* AppDelegate.swift */; };
 		C40BBC3C20A5E8A00039DB38 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40BBC3B20A5E8A00039DB38 /* ViewController.swift */; };
 		C40BBC3F20A5E8A00039DB38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C40BBC3D20A5E8A00039DB38 /* Main.storyboard */; };
 		C40BBC4120A5E8A20039DB38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C40BBC4020A5E8A20039DB38 /* Assets.xcassets */; };
 		C40BBC4420A5E8A20039DB38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C40BBC4220A5E8A20039DB38 /* LaunchScreen.storyboard */; };
 		C40BBC4F20A5E8A20039DB38 /* DogWalkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40BBC4E20A5E8A20039DB38 /* DogWalkTests.swift */; };
+		DABD7930463A8D1C910AE980 /* Pods_DogWalk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0053BB6FD59CEF67AFCCDD4B /* Pods_DogWalk.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,6 +28,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0053BB6FD59CEF67AFCCDD4B /* Pods_DogWalk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DogWalk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		34B360A0E7B7CD665D720851 /* Pods-DogWalkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DogWalkTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DogWalkTests/Pods-DogWalkTests.release.xcconfig"; sourceTree = "<group>"; };
+		65978619288C8525974EC825 /* Pods_DogWalkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DogWalkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D42138512FBABFFA85C0C20 /* Pods-DogWalkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DogWalkTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DogWalkTests/Pods-DogWalkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C40BBC3620A5E8A00039DB38 /* DogWalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DogWalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C40BBC3920A5E8A00039DB38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C40BBC3B20A5E8A00039DB38 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -36,6 +42,8 @@
 		C40BBC4A20A5E8A20039DB38 /* DogWalkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DogWalkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C40BBC4E20A5E8A20039DB38 /* DogWalkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogWalkTests.swift; sourceTree = "<group>"; };
 		C40BBC5020A5E8A20039DB38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C8BF244C8C31665166D23143 /* Pods-DogWalk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DogWalk.release.xcconfig"; path = "Pods/Target Support Files/Pods-DogWalk/Pods-DogWalk.release.xcconfig"; sourceTree = "<group>"; };
+		E02DE9B9940FE7FF3C4D2EA3 /* Pods-DogWalk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DogWalk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DogWalk/Pods-DogWalk.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DABD7930463A8D1C910AE980 /* Pods_DogWalk.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,18 +59,41 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49DF4CCA2BB25D9620C98392 /* Pods_DogWalkTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2AA0B3C874D9CD0EEAA3DBC2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E02DE9B9940FE7FF3C4D2EA3 /* Pods-DogWalk.debug.xcconfig */,
+				C8BF244C8C31665166D23143 /* Pods-DogWalk.release.xcconfig */,
+				8D42138512FBABFFA85C0C20 /* Pods-DogWalkTests.debug.xcconfig */,
+				34B360A0E7B7CD665D720851 /* Pods-DogWalkTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		4BFD7E45B5E17BD0BD54A940 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0053BB6FD59CEF67AFCCDD4B /* Pods_DogWalk.framework */,
+				65978619288C8525974EC825 /* Pods_DogWalkTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C40BBC2D20A5E8A00039DB38 = {
 			isa = PBXGroup;
 			children = (
 				C40BBC3820A5E8A00039DB38 /* DogWalk */,
 				C40BBC4D20A5E8A20039DB38 /* DogWalkTests */,
 				C40BBC3720A5E8A00039DB38 /* Products */,
+				2AA0B3C874D9CD0EEAA3DBC2 /* Pods */,
+				4BFD7E45B5E17BD0BD54A940 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,9 +135,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C40BBC5320A5E8A20039DB38 /* Build configuration list for PBXNativeTarget "DogWalk" */;
 			buildPhases = (
+				E20D4F920E43052EDDE5FAB3 /* [CP] Check Pods Manifest.lock */,
 				C40BBC3220A5E8A00039DB38 /* Sources */,
 				C40BBC3320A5E8A00039DB38 /* Frameworks */,
 				C40BBC3420A5E8A00039DB38 /* Resources */,
+				CDD4B5CAE307FD7D21B5C97B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -120,9 +154,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C40BBC5620A5E8A20039DB38 /* Build configuration list for PBXNativeTarget "DogWalkTests" */;
 			buildPhases = (
+				23F4A3363929E15189D09934 /* [CP] Check Pods Manifest.lock */,
 				C40BBC4620A5E8A20039DB38 /* Sources */,
 				C40BBC4720A5E8A20039DB38 /* Frameworks */,
 				C40BBC4820A5E8A20039DB38 /* Resources */,
+				FF231AFEEE33739A76725456 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -191,6 +227,87 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		23F4A3363929E15189D09934 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DogWalkTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CDD4B5CAE307FD7D21B5C97B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-DogWalk/Pods-DogWalk-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DogWalk/Pods-DogWalk-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E20D4F920E43052EDDE5FAB3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DogWalk-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FF231AFEEE33739A76725456 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-DogWalkTests/Pods-DogWalkTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
+				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DogWalkTests/Pods-DogWalkTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C40BBC3220A5E8A00039DB38 /* Sources */ = {
@@ -356,15 +473,13 @@
 		};
 		C40BBC5420A5E8A20039DB38 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E02DE9B9940FE7FF3C4D2EA3 /* Pods-DogWalk.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RBE99A2Y96;
 				INFOPLIST_FILE = DogWalk/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.DrDoom.DogWalk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -374,15 +489,13 @@
 		};
 		C40BBC5520A5E8A20039DB38 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C8BF244C8C31665166D23143 /* Pods-DogWalk.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RBE99A2Y96;
 				INFOPLIST_FILE = DogWalk/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.DrDoom.DogWalk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -392,17 +505,14 @@
 		};
 		C40BBC5720A5E8A20039DB38 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8D42138512FBABFFA85C0C20 /* Pods-DogWalkTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RBE99A2Y96;
 				INFOPLIST_FILE = DogWalkTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.DrDoom.DogWalkTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -413,17 +523,14 @@
 		};
 		C40BBC5820A5E8A20039DB38 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 34B360A0E7B7CD665D720851 /* Pods-DogWalkTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RBE99A2Y96;
 				INFOPLIST_FILE = DogWalkTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.DrDoom.DogWalkTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
