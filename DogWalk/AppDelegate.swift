@@ -21,10 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = navController
         appCoordinator = AppCoordinator(with: navController)
-        let flow = appCoordinator?.start()
+        appCoordinator?.start()
         window?.makeKeyAndVisible()
-        
-        print(flow)
         return true
     }
 

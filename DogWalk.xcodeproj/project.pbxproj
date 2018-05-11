@@ -26,6 +26,7 @@
 		C424F69D20A63FA9001BDB80 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C424F69320A63A7A001BDB80 /* AppCoordinator.swift */; };
 		C424F69F20A64808001BDB80 /* MapVCCoordinatorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C424F69E20A64808001BDB80 /* MapVCCoordinatorSpec.swift */; };
 		C424F6A320A64DA5001BDB80 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40BBC3B20A5E8A00039DB38 /* MapViewController.swift */; };
+		C424F6A820A657DE001BDB80 /* MapViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C424F6A720A657DE001BDB80 /* MapViewControllerSpec.swift */; };
 		DABD7930463A8D1C910AE980 /* Pods_DogWalk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0053BB6FD59CEF67AFCCDD4B /* Pods_DogWalk.framework */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +61,7 @@
 		C424F69520A63EC2001BDB80 /* MapVCCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVCCoordinator.swift; sourceTree = "<group>"; };
 		C424F69720A63F17001BDB80 /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
 		C424F69E20A64808001BDB80 /* MapVCCoordinatorSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVCCoordinatorSpec.swift; sourceTree = "<group>"; };
+		C424F6A720A657DE001BDB80 /* MapViewControllerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewControllerSpec.swift; sourceTree = "<group>"; };
 		C8BF244C8C31665166D23143 /* Pods-DogWalk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DogWalk.release.xcconfig"; path = "Pods/Target Support Files/Pods-DogWalk/Pods-DogWalk.release.xcconfig"; sourceTree = "<group>"; };
 		E02DE9B9940FE7FF3C4D2EA3 /* Pods-DogWalk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DogWalk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DogWalk/Pods-DogWalk.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -144,12 +146,29 @@
 		C40BBC4D20A5E8A20039DB38 /* DogWalkTests */ = {
 			isa = PBXGroup;
 			children = (
-				C40BBC4E20A5E8A20039DB38 /* CoordinatorSpec.swift */,
-				C424F69120A63749001BDB80 /* AppCoordinatorSpec.swift */,
-				C424F69E20A64808001BDB80 /* MapVCCoordinatorSpec.swift */,
+				C424F6A920A65810001BDB80 /* Coordinators */,
+				C424F6AA20A65819001BDB80 /* ViewControllers */,
 				C40BBC5020A5E8A20039DB38 /* Info.plist */,
 			);
 			path = DogWalkTests;
+			sourceTree = "<group>";
+		};
+		C424F6A920A65810001BDB80 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				C40BBC4E20A5E8A20039DB38 /* CoordinatorSpec.swift */,
+				C424F69120A63749001BDB80 /* AppCoordinatorSpec.swift */,
+				C424F69E20A64808001BDB80 /* MapVCCoordinatorSpec.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		C424F6AA20A65819001BDB80 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C424F6A720A657DE001BDB80 /* MapViewControllerSpec.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -357,6 +376,7 @@
 				C424F69A20A63F9E001BDB80 /* AuthCoordinator.swift in Sources */,
 				C424F6A320A64DA5001BDB80 /* MapViewController.swift in Sources */,
 				C424F69B20A63FA1001BDB80 /* MockCoordinator.swift in Sources */,
+				C424F6A820A657DE001BDB80 /* MapViewControllerSpec.swift in Sources */,
 				C424F69F20A64808001BDB80 /* MapVCCoordinatorSpec.swift in Sources */,
 				C424F69920A63F9B001BDB80 /* MapVCCoordinator.swift in Sources */,
 				C424F69D20A63FA9001BDB80 /* AppCoordinator.swift in Sources */,
