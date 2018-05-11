@@ -16,23 +16,26 @@ class CoordinatorSpec: QuickSpec {
     override func spec() {
         describe("A Coordinator") {
             context("after being properly initialized") {
-                let coordinator: Coordinator = AppCoordinator()
+                let navController = UINavigationController()
+                let coordinator: Coordinator = AppCoordinator(with: navController)
                 
                 it("should have navigation controller") {
                     expect(coordinator.navigationController).toNot(beNil())
                 }
                 
                 it("should have any child coordinators") {
-                    expect(coordinator.childCoordinators).toNot(beEmpty())
+                    expect(coordinator.childCoordinators).to(beEmpty())
+                }
+                
+                context("when you call start") {
+                    it("should start the flow of a child coordinator") {
+                        expect(coordinator.start()).to(equal("start() returning"))
+                    }
                 }
                 
             }
             
-            context("when you call start") {
-                it("should start the flow of a child coordinator") {
-                    expect(coordinator.start).to(equal("starting child coordinator"))
-                }
-            }
+            
         }
     }
 }

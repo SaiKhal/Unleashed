@@ -13,6 +13,8 @@
 		C40BBC4120A5E8A20039DB38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C40BBC4020A5E8A20039DB38 /* Assets.xcassets */; };
 		C40BBC4420A5E8A20039DB38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C40BBC4220A5E8A20039DB38 /* LaunchScreen.storyboard */; };
 		C40BBC4F20A5E8A20039DB38 /* DogWalkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40BBC4E20A5E8A20039DB38 /* DogWalkTests.swift */; };
+		C424F68E20A62F08001BDB80 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C424F68D20A62F08001BDB80 /* Coordinator.swift */; };
+		C424F69020A63002001BDB80 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C424F68F20A63002001BDB80 /* AppCoordinator.swift */; };
 		DABD7930463A8D1C910AE980 /* Pods_DogWalk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0053BB6FD59CEF67AFCCDD4B /* Pods_DogWalk.framework */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +42,8 @@
 		C40BBC4A20A5E8A20039DB38 /* DogWalkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DogWalkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C40BBC4E20A5E8A20039DB38 /* DogWalkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogWalkTests.swift; sourceTree = "<group>"; };
 		C40BBC5020A5E8A20039DB38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C424F68D20A62F08001BDB80 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		C424F68F20A63002001BDB80 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		C8BF244C8C31665166D23143 /* Pods-DogWalk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DogWalk.release.xcconfig"; path = "Pods/Target Support Files/Pods-DogWalk/Pods-DogWalk.release.xcconfig"; sourceTree = "<group>"; };
 		E02DE9B9940FE7FF3C4D2EA3 /* Pods-DogWalk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DogWalk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DogWalk/Pods-DogWalk.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -108,6 +112,8 @@
 			isa = PBXGroup;
 			children = (
 				C40BBC3920A5E8A00039DB38 /* AppDelegate.swift */,
+				C424F68D20A62F08001BDB80 /* Coordinator.swift */,
+				C424F68F20A63002001BDB80 /* AppCoordinator.swift */,
 				C40BBC3B20A5E8A00039DB38 /* ViewController.swift */,
 				C40BBC4020A5E8A20039DB38 /* Assets.xcassets */,
 				C40BBC4220A5E8A20039DB38 /* LaunchScreen.storyboard */,
@@ -310,8 +316,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C424F69020A63002001BDB80 /* AppCoordinator.swift in Sources */,
 				C40BBC3C20A5E8A00039DB38 /* ViewController.swift in Sources */,
 				C40BBC3A20A5E8A00039DB38 /* AppDelegate.swift in Sources */,
+				C424F68E20A62F08001BDB80 /* Coordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
