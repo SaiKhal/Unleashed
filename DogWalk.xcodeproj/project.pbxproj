@@ -10,7 +10,6 @@
 		49DF4CCA2BB25D9620C98392 /* Pods_DogWalkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65978619288C8525974EC825 /* Pods_DogWalkTests.framework */; };
 		C40BBC3A20A5E8A00039DB38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40BBC3920A5E8A00039DB38 /* AppDelegate.swift */; };
 		C40BBC3C20A5E8A00039DB38 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40BBC3B20A5E8A00039DB38 /* ViewController.swift */; };
-		C40BBC3F20A5E8A00039DB38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C40BBC3D20A5E8A00039DB38 /* Main.storyboard */; };
 		C40BBC4120A5E8A20039DB38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C40BBC4020A5E8A20039DB38 /* Assets.xcassets */; };
 		C40BBC4420A5E8A20039DB38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C40BBC4220A5E8A20039DB38 /* LaunchScreen.storyboard */; };
 		C40BBC4F20A5E8A20039DB38 /* DogWalkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40BBC4E20A5E8A20039DB38 /* DogWalkTests.swift */; };
@@ -35,7 +34,6 @@
 		C40BBC3620A5E8A00039DB38 /* DogWalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DogWalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C40BBC3920A5E8A00039DB38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C40BBC3B20A5E8A00039DB38 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		C40BBC3E20A5E8A00039DB38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C40BBC4020A5E8A20039DB38 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C40BBC4320A5E8A20039DB38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C40BBC4520A5E8A20039DB38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -111,7 +109,6 @@
 			children = (
 				C40BBC3920A5E8A00039DB38 /* AppDelegate.swift */,
 				C40BBC3B20A5E8A00039DB38 /* ViewController.swift */,
-				C40BBC3D20A5E8A00039DB38 /* Main.storyboard */,
 				C40BBC4020A5E8A20039DB38 /* Assets.xcassets */,
 				C40BBC4220A5E8A20039DB38 /* LaunchScreen.storyboard */,
 				C40BBC4520A5E8A20039DB38 /* Info.plist */,
@@ -215,7 +212,6 @@
 			files = (
 				C40BBC4420A5E8A20039DB38 /* LaunchScreen.storyboard in Resources */,
 				C40BBC4120A5E8A20039DB38 /* Assets.xcassets in Resources */,
-				C40BBC3F20A5E8A00039DB38 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,14 +334,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		C40BBC3D20A5E8A00039DB38 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C40BBC3E20A5E8A00039DB38 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		C40BBC4220A5E8A20039DB38 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -479,7 +467,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RBE99A2Y96;
 				INFOPLIST_FILE = DogWalk/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.DrDoom.DogWalk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -495,7 +486,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RBE99A2Y96;
 				INFOPLIST_FILE = DogWalk/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.DrDoom.DogWalk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -512,7 +506,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RBE99A2Y96;
 				INFOPLIST_FILE = DogWalkTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.DrDoom.DogWalkTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -530,7 +528,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RBE99A2Y96;
 				INFOPLIST_FILE = DogWalkTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.DrDoom.DogWalkTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
