@@ -17,7 +17,7 @@ class AppCoordinatorSpec: QuickSpec {
         describe("App Coordinator") {
             context("after being properly initialized") {
                 let navController = UINavigationController()
-                let coordinator: AppCoordinator = AppCoordinator(with: navController)
+                let coordinator: AppCoordinator = AppCoordinator(rootNav: navController, services: [:])
                 
                 it("should know if the user is logged in") {
                     expect(coordinator.isLoggedIn).to(beTrue())

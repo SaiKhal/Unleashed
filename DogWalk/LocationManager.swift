@@ -20,20 +20,53 @@ protocol LocationManagerType: class {
 extension CLLocationManager: LocationManagerType {}
 
 protocol LocationProvider: Service {
-    var locationManager: CLLocationManager { get set }
+    var locationManager: LocationManagerType { get set }
     var userLocations: PublishSubject<CLLocation> { get set }
     
     init(manager: LocationManagerType)
     func checkForLocationServices()
 }
 
-class LocationService: NSObject, LocationProvider {
+class MockLocationService: LocationProvider {
+    var locationManager: LocationManagerType
+    var userLocations = PublishSubject<CLLocation>()
     
+    required init(manager: LocationManagerType) {
+        self.locationManager = manager
+    }
+    
+    
+    var locationServicesChecked = false
+    
+    func checkForLocationServices() {
+        locationServicesChecked = true
+    }
+}
+
+class MockedLocationManagerType: LocationManagerType {
+    static func locationServicesEnabled() -> Bool {
+        return true
+    }
+    
+    static func authorizationStatus() -> CLAuthorizationStatus {
+        if locationServicesEnabled() {
+            return .authorizedWhenInUse
+        } else {
+            return .denied
+        }
+    }
+}
+
+class LocationService: NSObject, LocationProvider {
     
     // MARK: - Properties
     // Apple suggest to only have one instance of CLLocationManager
-    var locationManager: CLLocationManager
+    var locationManager: LocationManagerType
     var userLocations = PublishSubject<CLLocation>()
+    
+    var manager: CLLocationManager {
+        return locationManager as! CLLocationManager
+    }
 
     // MARK: - Inits
     required init(manager: LocationManagerType = CLLocationManager()) {
@@ -44,9 +77,9 @@ class LocationService: NSObject, LocationProvider {
         locationManager = manager
         super.init()
         
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
-        locationManager.distanceFilter = 10
+        manager.delegate = self
+        manager.desiredAccuracy = kCLLocationAccuracyKilometer
+        manager.distanceFilter = 10
         checkForLocationServices()
     }
     
@@ -75,10 +108,10 @@ class LocationService: NSObject, LocationProvider {
             switch CLLocationManager.authorizationStatus() {
             case .notDetermined: // intial state on first launch
                 print("not determined")
-                locationManager.requestWhenInUseAuthorization()
+                manager.requestWhenInUseAuthorization()
             case .denied: // user could potentially deny access
                 print("denied")
-                locationManager.requestWhenInUseAuthorization()
+                manager.requestWhenInUseAuthorization()
             case .authorizedAlways:
                 print("authorizedAlways")
             case .authorizedWhenInUse:
@@ -97,10 +130,10 @@ extension LocationService: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
         case .authorizedAlways, .authorizedWhenInUse:
-            locationManager.startUpdatingLocation()
+            manager.startUpdatingLocation()
             print("Location updating")
         default:
-            locationManager.stopUpdatingLocation()
+            manager.stopUpdatingLocation()
             print("Location stopped updating")
         }
     }

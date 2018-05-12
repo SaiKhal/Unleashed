@@ -39,15 +39,15 @@ extension Coordinator {
     }
     
     func add(service: Service, withTag tag: ServiceTags) {
-        services[tag] = service
+        self.services.updateValue(service, forKey: tag)
     }
     
     func remove(service: Service, withTag tag: ServiceTags) {
-        services.removeValue(forKey: tag)
+        self.services.removeValue(forKey: tag)
     }
     
     func removeAllServices() {
-        services.removeAll()
+        self.services.removeAll()
     }
     
 }

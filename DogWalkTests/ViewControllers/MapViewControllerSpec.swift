@@ -16,7 +16,8 @@ class MapViewControllerSpec: QuickSpec {
     override func spec() {
         describe("MapViewController") {
             context("when properly initialized") {
-                let mapViewController = MapViewController()
+                let viewModel = MapViewModel(locationService: LocationService())
+                let mapViewController = MapViewController(viewModel: viewModel)
                 _ = mapViewController.view //calls viewDidLoad
                 
                 it("should have a mapView") {

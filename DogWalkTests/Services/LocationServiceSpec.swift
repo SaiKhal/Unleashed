@@ -9,20 +9,18 @@
 import Quick
 import Nimble
 
+
 @testable import DogWalk
 
-class MockLocationService: LocationProvider {
-    
-}
-
-class LocationManagerSpec: QuickSpec {
+class LocationServiceSpec: QuickSpec {
     override func spec() {
         describe("LocationManager") {
             context("when properly initialized") {
-                let locationManager = MockLocationService()
+                let mockManagerType = MockedLocationManagerType()
+                let locationManager = MockLocationService(manager: mockManagerType)
                 
                 it("should have a CLLocationManager property") {
-                    expect(locationManager.manager).toNot(beNil())
+                    expect(locationManager).toNot(beNil())
                 }
                 
                 it("should have a subject of CLLocation") {
@@ -30,7 +28,9 @@ class LocationManagerSpec: QuickSpec {
                 }
                 
                 it("should checkForLocationServices") {
-                    expect().to(beAKindOf(MKMapViewDelegate.self))
+                    expect(locationManager.locationServicesChecked).to(beFalse())
+                    locationManager.checkForLocationServices()
+                    expect(locationManager.locationServicesChecked).to(beTrue())
                 }
                 
                 context("and location services are enabled") {
