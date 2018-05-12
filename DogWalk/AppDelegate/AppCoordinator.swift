@@ -8,13 +8,27 @@
 
 import UIKit
 
+protocol Service {}
+
+enum ServiceTags {
+    case locationService
+}
+
 final class AppCoordinator: Coordinator {
+    
     var isLoggedIn: Bool = true
     var navigationController: UINavigationController
+    var services: [ServiceTags: Service]
+    
     var childCoordinators = [Coordinator]()
     
-    init(with navigationController: UINavigationController) {
+    
+    init(rootNav navigationController: UINavigationController, services: [ServiceTags: Service]) {
         self.navigationController = navigationController
+        self.services = services
+        
+        let locationService = LocationService()
+        add(service: locationService, withTag: .locationService)
     }
     
     func start() {
@@ -26,14 +40,14 @@ final class AppCoordinator: Coordinator {
     }
     
     private func showAuth() {
-        let coordinator = AuthCoordinator(with: navigationController)
-        childCoordinators.append(coordinator)
+        let coordinator = AuthCoordinator(rootNav: navigationController, services: services)
+        addChildCoordinator(coordinator)
         coordinator.start()
     }
     
     private func showMap()  {
-        let coordinator = MapVCCoordinator(with: navigationController)
-        childCoordinators.append(coordinator)
+        let coordinator = MapVCCoordinator(rootNav: navigationController, services: services)
+        addChildCoordinator(coordinator)
         coordinator.start()
     }
     

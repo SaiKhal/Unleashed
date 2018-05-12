@@ -9,14 +9,16 @@
 import UIKit
 
 final class AuthCoordinator: Coordinator {
+    
     var navigationController: UINavigationController
+    var services: [ServiceTags : Service]
     var childCoordinators = [Coordinator]()
     
-    init(with navigationController: UINavigationController) {
+    init(rootNav navigationController: UINavigationController, services: [ServiceTags : Service]) {
         self.navigationController = navigationController
+        self.services = services
     }
     
     func start()  {}
-    
     
 }

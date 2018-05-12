@@ -11,7 +11,43 @@ import UIKit
 protocol Coordinator: class {
     var navigationController: UINavigationController { get set }
     var childCoordinators: [Coordinator] { get set }
+    var services: [ServiceTags: Service] { get set }
     
-    init(with navigationController: UINavigationController) 
+    init(rootNav navigationController: UINavigationController, services: [ServiceTags: Service])
     func start() 
+}
+
+extension Coordinator {
+    func addChildCoordinator(_ coordinator: Coordinator) {
+        childCoordinators.append(coordinator)
+    }
+    
+    func removeChildCoordinator(_ coordinator: Coordinator) {
+        if let index = childCoordinators.index(where: {$0 === coordinator}) {
+            childCoordinators.remove(at: index)
+        } else {
+            print("Couldn't remove coordinator: \(coordinator). It's not a child coordinator.")
+        }
+    }
+    
+    func removeAllChildCoordinatorsWith<T>(type: T.Type) {
+        childCoordinators = childCoordinators.filter { $0 is T  == false }
+    }
+    
+    func removeAllChildCoordinators() {
+        childCoordinators.removeAll()
+    }
+    
+    func add(service: Service, withTag tag: ServiceTags) {
+        services[tag] = service
+    }
+    
+    func remove(service: Service, withTag tag: ServiceTags) {
+        services.removeValue(forKey: tag)
+    }
+    
+    func removeAllServices() {
+        services.removeAll()
+    }
+    
 }

@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = navController
-        appCoordinator = AppCoordinator(with: navController)
+        appCoordinator = AppCoordinator(rootNav: navController, services: [:])
         appCoordinator?.start()
         window?.makeKeyAndVisible()
         return true

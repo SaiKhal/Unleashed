@@ -9,24 +9,41 @@
 import Foundation
 import MapKit
 import CoreLocation
+import RxSwift
+import RxCocoa
 
-protocol LocationServiceDelegate: class {
-    func userLocationDidUpdate(_ userLocation: CLLocation)
+protocol LocationManagerType: class {
+    static func locationServicesEnabled() -> Bool
+    static func authorizationStatus() -> CLAuthorizationStatus
 }
 
-class LocationService: NSObject {
+extension CLLocationManager: LocationManagerType {}
+
+protocol LocationProvider: Service {
+    var locationManager: CLLocationManager { get set }
+    var userLocations: PublishSubject<CLLocation> { get set }
+    
+    init(manager: LocationManagerType)
+    func checkForLocationServices()
+}
+
+class LocationService: NSObject, LocationProvider {
+    
     
     // MARK: - Properties
     // Apple suggest to only have one instance of CLLocationManager
-    static let manager = LocationService()
-    private var locationManager: CLLocationManager!
-    
-    weak var locationServiceDelegate: LocationServiceDelegate!
+    var locationManager: CLLocationManager
+    var userLocations = PublishSubject<CLLocation>()
 
     // MARK: - Inits
-    private override init() {
+    required init(manager: LocationManagerType = CLLocationManager()) {
+        guard let manager = manager as? CLLocationManager else {
+            fatalError("Must be initialized with CLLocationManager() the default init, protocol param is for mocking")
+        }
+        
+        locationManager = manager
         super.init()
-        locationManager = CLLocationManager()
+        
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
         locationManager.distanceFilter = 10
@@ -52,7 +69,7 @@ class LocationService: NSObject {
     }
     
     // MARK: - Private Methods
-    private func checkForLocationServices() {
+    func checkForLocationServices() {
         let phoneLocationServicesAreEnabled = CLLocationManager.locationServicesEnabled()
         if phoneLocationServicesAreEnabled {
             switch CLLocationManager.authorizationStatus() {
@@ -81,22 +98,25 @@ extension LocationService: CLLocationManagerDelegate {
         switch status {
         case .authorizedAlways, .authorizedWhenInUse:
             locationManager.startUpdatingLocation()
-            print("Auth Status changed. Authorized")
+            print("Location updating")
         default:
             locationManager.stopUpdatingLocation()
-            print("Auth Status changed. No longer allowed")
+            print("Location stopped updating")
         }
     }
     
     // Handles user location updates
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let userLocation = locations.first else { return }
-        locationServiceDelegate.userLocationDidUpdate(userLocation)
+//        locationServiceDelegate.userLocationDidUpdate(userLocation)
+        userLocations.onNext(userLocation)
         print("Updated locations: \(locations)")
     }
+    
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Error \(error)")
     }
+    
     
 }
 
