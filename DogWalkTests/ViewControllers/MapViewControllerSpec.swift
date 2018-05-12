@@ -17,13 +17,14 @@ class MapViewControllerSpec: QuickSpec {
         describe("MapViewController") {
             context("when properly initialized") {
                 let mapViewController = MapViewController()
+                _ = mapViewController.view //calls viewDidLoad
                 
                 it("should have a mapView") {
                     expect(mapViewController.contentView).toNot(beNil())
                 }
                 
                 it("should conform to MKMapViewDelegate") {
-                    expect(mapViewController).to(conforms(to: MKMapViewDelegate))
+                    expect(mapViewController).to(beAKindOf(MKMapViewDelegate.self))
                 }
                 
                 it("should have its mapViews delegate set") {

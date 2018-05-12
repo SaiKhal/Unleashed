@@ -27,6 +27,10 @@
 		C424F69F20A64808001BDB80 /* MapVCCoordinatorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C424F69E20A64808001BDB80 /* MapVCCoordinatorSpec.swift */; };
 		C424F6A320A64DA5001BDB80 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40BBC3B20A5E8A00039DB38 /* MapViewController.swift */; };
 		C424F6A820A657DE001BDB80 /* MapViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C424F6A720A657DE001BDB80 /* MapViewControllerSpec.swift */; };
+		C424F6AC20A65C11001BDB80 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C424F6AB20A65C11001BDB80 /* MapView.swift */; };
+		C424F6AD20A65C11001BDB80 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C424F6AB20A65C11001BDB80 /* MapView.swift */; };
+		C424F6B220A66F91001BDB80 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C424F6B120A66F91001BDB80 /* LocationManager.swift */; };
+		C424F6B320A66F91001BDB80 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C424F6B120A66F91001BDB80 /* LocationManager.swift */; };
 		DABD7930463A8D1C910AE980 /* Pods_DogWalk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0053BB6FD59CEF67AFCCDD4B /* Pods_DogWalk.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +66,8 @@
 		C424F69720A63F17001BDB80 /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
 		C424F69E20A64808001BDB80 /* MapVCCoordinatorSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVCCoordinatorSpec.swift; sourceTree = "<group>"; };
 		C424F6A720A657DE001BDB80 /* MapViewControllerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewControllerSpec.swift; sourceTree = "<group>"; };
+		C424F6AB20A65C11001BDB80 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		C424F6B120A66F91001BDB80 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		C8BF244C8C31665166D23143 /* Pods-DogWalk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DogWalk.release.xcconfig"; path = "Pods/Target Support Files/Pods-DogWalk/Pods-DogWalk.release.xcconfig"; sourceTree = "<group>"; };
 		E02DE9B9940FE7FF3C4D2EA3 /* Pods-DogWalk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DogWalk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DogWalk/Pods-DogWalk.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -129,13 +135,11 @@
 		C40BBC3820A5E8A00039DB38 /* DogWalk */ = {
 			isa = PBXGroup;
 			children = (
-				C40BBC3920A5E8A00039DB38 /* AppDelegate.swift */,
-				C424F68D20A62F08001BDB80 /* Coordinator.swift */,
-				C424F69320A63A7A001BDB80 /* AppCoordinator.swift */,
-				C424F69520A63EC2001BDB80 /* MapVCCoordinator.swift */,
+				C424F6AF20A66F3A001BDB80 /* AppDelegate */,
+				C424F6B020A66F54001BDB80 /* Coordinator */,
+				C424F6AE20A66F2B001BDB80 /* Map */,
 				C424F69720A63F17001BDB80 /* AuthCoordinator.swift */,
-				C424F68F20A63002001BDB80 /* MockCoordinator.swift */,
-				C40BBC3B20A5E8A00039DB38 /* MapViewController.swift */,
+				C424F6B120A66F91001BDB80 /* LocationManager.swift */,
 				C40BBC4020A5E8A20039DB38 /* Assets.xcassets */,
 				C40BBC4220A5E8A20039DB38 /* LaunchScreen.storyboard */,
 				C40BBC4520A5E8A20039DB38 /* Info.plist */,
@@ -169,6 +173,34 @@
 				C424F6A720A657DE001BDB80 /* MapViewControllerSpec.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		C424F6AE20A66F2B001BDB80 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				C424F69520A63EC2001BDB80 /* MapVCCoordinator.swift */,
+				C40BBC3B20A5E8A00039DB38 /* MapViewController.swift */,
+				C424F6AB20A65C11001BDB80 /* MapView.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		C424F6AF20A66F3A001BDB80 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				C40BBC3920A5E8A00039DB38 /* AppDelegate.swift */,
+				C424F69320A63A7A001BDB80 /* AppCoordinator.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		C424F6B020A66F54001BDB80 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				C424F68D20A62F08001BDB80 /* Coordinator.swift */,
+				C424F68F20A63002001BDB80 /* MockCoordinator.swift */,
+			);
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -357,12 +389,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				C424F69020A63002001BDB80 /* MockCoordinator.swift in Sources */,
+				C424F6AC20A65C11001BDB80 /* MapView.swift in Sources */,
 				C40BBC3C20A5E8A00039DB38 /* MapViewController.swift in Sources */,
 				C424F69620A63EC2001BDB80 /* MapVCCoordinator.swift in Sources */,
 				C424F69420A63A7A001BDB80 /* AppCoordinator.swift in Sources */,
 				C424F69820A63F17001BDB80 /* AuthCoordinator.swift in Sources */,
 				C40BBC3A20A5E8A00039DB38 /* AppDelegate.swift in Sources */,
 				C424F68E20A62F08001BDB80 /* Coordinator.swift in Sources */,
+				C424F6B220A66F91001BDB80 /* LocationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,10 +407,12 @@
 				C40BBC4F20A5E8A20039DB38 /* CoordinatorSpec.swift in Sources */,
 				C424F69220A63749001BDB80 /* AppCoordinatorSpec.swift in Sources */,
 				C424F69C20A63FA5001BDB80 /* Coordinator.swift in Sources */,
+				C424F6AD20A65C11001BDB80 /* MapView.swift in Sources */,
 				C424F69A20A63F9E001BDB80 /* AuthCoordinator.swift in Sources */,
 				C424F6A320A64DA5001BDB80 /* MapViewController.swift in Sources */,
 				C424F69B20A63FA1001BDB80 /* MockCoordinator.swift in Sources */,
 				C424F6A820A657DE001BDB80 /* MapViewControllerSpec.swift in Sources */,
+				C424F6B320A66F91001BDB80 /* LocationManager.swift in Sources */,
 				C424F69F20A64808001BDB80 /* MapVCCoordinatorSpec.swift in Sources */,
 				C424F69920A63F9B001BDB80 /* MapVCCoordinator.swift in Sources */,
 				C424F69D20A63FA9001BDB80 /* AppCoordinator.swift in Sources */,

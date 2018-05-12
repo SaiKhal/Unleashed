@@ -7,14 +7,24 @@
 //
 
 import UIKit
+import MapKit
 
 class MapViewController: UIViewController {
+    var contentView = MapView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        view.backgroundColor = .green
+        view.addSubview(contentView)
+        contentView.mapView.delegate = self
+        
     }
 
+}
+
+extension MapViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        return MKOverlayRenderer()
+    }
 }
 
