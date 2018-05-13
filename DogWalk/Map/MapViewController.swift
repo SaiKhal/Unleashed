@@ -12,9 +12,9 @@ import RxSwift
 import RxCocoa
 
 class MapViewModel {
-    var locationService: LocationService
+    var locationService: LocationProvider
     
-    init(locationService: LocationService) {
+    init(locationService: LocationProvider) {
         self.locationService = locationService
     }
     

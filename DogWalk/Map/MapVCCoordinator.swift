@@ -19,7 +19,7 @@ final class MapVCCoordinator: Coordinator {
         self.navigationController = navigationController
         self.services = services
         
-        guard let locationService = services[ServiceTags.locationService] as? LocationService else {
+        guard let locationService = services[ServiceTags.locationService] as? LocationProvider else {
             fatalError("MapVCCoordinator does not have location service neccessay to create MapViewModel")
         }
         

@@ -140,8 +140,7 @@
 				C424F6AF20A66F3A001BDB80 /* AppDelegate */,
 				C424F6B020A66F54001BDB80 /* Coordinator */,
 				C424F6AE20A66F2B001BDB80 /* Map */,
-				C424F69720A63F17001BDB80 /* AuthCoordinator.swift */,
-				C424F6B120A66F91001BDB80 /* LocationManager.swift */,
+				C424F6B820A8AB40001BDB80 /* Dependecies */,
 				C40BBC4020A5E8A20039DB38 /* Assets.xcassets */,
 				C40BBC4220A5E8A20039DB38 /* LaunchScreen.storyboard */,
 				C40BBC4520A5E8A20039DB38 /* Info.plist */,
@@ -202,6 +201,7 @@
 			children = (
 				C424F68D20A62F08001BDB80 /* Coordinator.swift */,
 				C424F68F20A63002001BDB80 /* MockCoordinator.swift */,
+				C424F69720A63F17001BDB80 /* AuthCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -212,6 +212,14 @@
 				C424F6B420A6FBD9001BDB80 /* LocationServiceSpec.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		C424F6B820A8AB40001BDB80 /* Dependecies */ = {
+			isa = PBXGroup;
+			children = (
+				C424F6B120A66F91001BDB80 /* LocationManager.swift */,
+			);
+			path = Dependecies;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
