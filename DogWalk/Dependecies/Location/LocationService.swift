@@ -12,74 +12,23 @@ import CoreLocation
 import RxSwift
 import RxCocoa
 
-protocol LocationManagerType: class {
-    static func locationServicesEnabled() -> Bool
-    static func authorizationStatus() -> CLAuthorizationStatus
-}
-
-extension CLLocationManager: LocationManagerType {}
-
-protocol LocationProvider: Service {
-    var locationManager: LocationManagerType { get set }
-    var userLocations: PublishSubject<CLLocation> { get set }
-    
-    init(manager: LocationManagerType)
-    func checkForLocationServices()
-}
-
-class MockLocationService: LocationProvider {
-    var locationManager: LocationManagerType
-    var userLocations = PublishSubject<CLLocation>()
-    
-    required init(manager: LocationManagerType) {
-        self.locationManager = manager
-    }
-    
-    
-    var locationServicesChecked = false
-    
-    func checkForLocationServices() {
-        locationServicesChecked = true
-    }
-}
-
-class MockedLocationManagerType: LocationManagerType {
-    static func locationServicesEnabled() -> Bool {
-        return true
-    }
-    
-    static func authorizationStatus() -> CLAuthorizationStatus {
-        if locationServicesEnabled() {
-            return .authorizedWhenInUse
-        } else {
-            return .denied
-        }
-    }
-}
 
 class LocationService: NSObject, LocationProvider {
     
     // MARK: - Properties
     // Apple suggest to only have one instance of CLLocationManager
-    var locationManager: LocationManagerType
+    var locationManager: LocationManager
     var userLocations = PublishSubject<CLLocation>()
-    
-    var manager: CLLocationManager {
-        return locationManager as! CLLocationManager
-    }
 
     // MARK: - Inits
-    required init(manager: LocationManagerType = CLLocationManager()) {
-        guard let manager = manager as? CLLocationManager else {
-            fatalError("Must be initialized with CLLocationManager() the default init, protocol param is for mocking")
-        }
+    required init(manager: LocationManager = CLLocationManager()) {
         
         locationManager = manager
         super.init()
         
-        manager.delegate = self
-        manager.desiredAccuracy = kCLLocationAccuracyKilometer
-        manager.distanceFilter = 10
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
+        locationManager.distanceFilter = 10
         checkForLocationServices()
     }
     
@@ -108,10 +57,10 @@ class LocationService: NSObject, LocationProvider {
             switch CLLocationManager.authorizationStatus() {
             case .notDetermined: // intial state on first launch
                 print("not determined")
-                manager.requestWhenInUseAuthorization()
+                locationManager.requestWhenInUseAuthorization()
             case .denied: // user could potentially deny access
                 print("denied")
-                manager.requestWhenInUseAuthorization()
+                locationManager.requestWhenInUseAuthorization()
             case .authorizedAlways:
                 print("authorizedAlways")
             case .authorizedWhenInUse:

@@ -19,10 +19,8 @@ class MapVCCoordinatorSpec: QuickSpec {
         describe("MapViewController Coordinator") {
             context("after being properly initialized") {
                 let navController = UINavigationController()
-                let mockManagerType = MockedLocationManagerType()
-                let locationManager = MockLocationService(manager: mockManagerType)
-                let services: [ServiceTags: Service] = [.locationService: locationManager]
-                let coordinator: MapVCCoordinator = MapVCCoordinator(rootNav: navController, services: services)
+                let mockDependency = MockDependency()
+                let coordinator: MapVCCoordinator = MapVCCoordinator(rootNav: navController, dependency: mockDependency)
 
                 it("should own a mapViewController") {
                     expect(coordinator.mapViewController).toNot(beNil())

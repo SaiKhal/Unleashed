@@ -11,9 +11,9 @@ import UIKit
 protocol Coordinator: class {
     var navigationController: UINavigationController { get set }
     var childCoordinators: [Coordinator] { get set }
-    var services: [ServiceTags: Service] { get set }
+    var dependencies: Dependency { get set }
     
-    init(rootNav navigationController: UINavigationController, services: [ServiceTags: Service])
+    init(rootNav navigationController: UINavigationController, dependency: Dependency)
     func start() 
 }
 
@@ -36,18 +36,6 @@ extension Coordinator {
     
     func removeAllChildCoordinators() {
         childCoordinators.removeAll()
-    }
-    
-    func add(service: Service, withTag tag: ServiceTags) {
-        self.services.updateValue(service, forKey: tag)
-    }
-    
-    func remove(service: Service, withTag tag: ServiceTags) {
-        self.services.removeValue(forKey: tag)
-    }
-    
-    func removeAllServices() {
-        self.services.removeAll()
     }
     
 }

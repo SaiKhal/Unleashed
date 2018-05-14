@@ -17,13 +17,11 @@ class AppCoordinatorSpec: QuickSpec {
         describe("App Coordinator") {
             context("after being properly initialized") {
                 let navController = UINavigationController()
-                let mockManagerType = MockedLocationManagerType()
-                let locationManager = MockLocationService(manager: mockManagerType)
-                let services: [ServiceTags: Service] = [.locationService: locationManager]
-                let coordinator: AppCoordinator = AppCoordinator(rootNav: navController, services: services)
+                let mockDependency = MockDependency()
+                let coordinator: AppCoordinator = AppCoordinator(rootNav: navController, dependency: mockDependency)
                 
                 it("should have all initial services") {
-                    expect(coordinator.services).toNot(beNil())
+                    expect(coordinator.dependencies).toNot(beNil())
                 }
                 
                 it("should know if the user is logged in") {

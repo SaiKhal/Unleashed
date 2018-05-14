@@ -11,16 +11,16 @@ import UIKit
 final class MockCoordinator: Coordinator {
     
     var navigationController: UINavigationController
-    var services: [ServiceTags : Service]
+    var dependencies: Dependency
     var childCoordinators = [Coordinator]()
     
-    init(rootNav navigationController: UINavigationController, services: [ServiceTags : Service]) {
+    init(rootNav navigationController: UINavigationController, dependency: Dependency) {
         self.navigationController = navigationController
-        self.services = services
+        self.dependencies = dependency
     }
     
     func start() {
-        let nextCoordinator = MockCoordinator(rootNav: navigationController, services: services)
+        let nextCoordinator = MockCoordinator(rootNav: navigationController, dependency: dependencies)
 //        let stringForTesting = nextCoordinator.start()
         addChildCoordinator(nextCoordinator)
     }

@@ -11,21 +11,30 @@ import UIKit
 final class MapVCCoordinator: Coordinator {
     
     var navigationController: UINavigationController
-    var services: [ServiceTags : Service]
+    var dependencies: Dependency
     var childCoordinators = [Coordinator]()
     var mapViewController: MapViewController
     
-    init(rootNav navigationController: UINavigationController, services: [ServiceTags : Service]) {
+    init(rootNav navigationController: UINavigationController, dependency: Dependency) {
         self.navigationController = navigationController
-        self.services = services
+        self.dependencies = dependency
         
-        guard let locationService = services[ServiceTags.locationService] as? LocationProvider else {
-            fatalError("MapVCCoordinator does not have location service neccessay to create MapViewModel")
-        }
-        
-        let viewModel = MapViewModel(locationService: locationService)
+        let locationProvider = dependency.locationProvider
+        let viewModel = MapViewModel(locationService: locationProvider)
         mapViewController = MapViewController(viewModel: viewModel)
     }
+    
+//    init(rootNav navigationController: UINavigationController, services: [ServiceTags : Service]) {
+//        self.navigationController = navigationController
+//        self.services = services
+//
+//        guard let locationService = services[ServiceTags.locationService] as? LocationProvider else {
+//            fatalError("MapVCCoordinator does not have location service neccessay to create MapViewModel")
+//        }
+//
+//        let viewModel = MapViewModel(locationService: locationService)
+//        mapViewController = MapViewController(viewModel: viewModel)
+//    }
     
     func start() {
         navigationController.pushViewController(mapViewController, animated: true)
