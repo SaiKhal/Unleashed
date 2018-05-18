@@ -20,6 +20,8 @@ class LocationService: NSObject, LocationProvider {
     var locationManager: LocationManager
     var userLocations = PublishSubject<CLLocation>()
 
+//    var rx_locations = Observable.never()
+    
     // MARK: - Inits
     required init(manager: LocationManager = CLLocationManager()) {
         
@@ -97,6 +99,15 @@ extension LocationService: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Error \(error)")
+    }
+    
+    func streamLocation(_ location: CLLocation) -> Observable<CLLocation> {
+        return Observable.create({ (observer) -> Disposable in
+            observer.onNext(location)
+            observer.onCompleted()
+            
+            return Disposables.create()
+        })
     }
     
     

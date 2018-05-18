@@ -28,6 +28,10 @@ class MapViewControllerSpec: QuickSpec {
                     expect(mapViewController).to(beAKindOf(MKMapViewDelegate.self))
                 }
                 
+                it("should conform to testProtocol") {
+                    expect(mapViewController).to(beAKindOf(TestProtocol.self))
+                }
+                
                 it("should have its mapViews delegate set") {
                     expect(mapViewController.contentView.mapView.delegate).toNot(beNil())
                 }
