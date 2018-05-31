@@ -18,3 +18,7 @@ protocol LocationProvider {
     init(manager: LocationManager)
     func checkForLocationServices()
 }
+
+protocol HasLocationProvider {
+    var locationProvider: LocationProvider { get set }
+}

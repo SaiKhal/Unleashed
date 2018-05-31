@@ -9,6 +9,7 @@
 import Foundation
 
 typealias Dependency = HasLocationProvider
+
 struct AppDependecy: Dependency {
     var locationProvider: LocationProvider
 }
@@ -17,10 +18,6 @@ extension AppDependecy {
     init(location: LocationProvider = LocationService()) {
         self.locationProvider = location
     }
-}
-
-protocol HasLocationProvider {
-    var locationProvider: LocationProvider { get set }
 }
 
 struct MockDependency: Dependency {

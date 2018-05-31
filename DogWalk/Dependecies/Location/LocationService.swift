@@ -16,7 +16,6 @@ import RxCocoa
 class LocationService: NSObject, LocationProvider {
     
     // MARK: - Properties
-    // Apple suggest to only have one instance of CLLocationManager
     var locationManager: LocationManager
     var userLocations = PublishSubject<CLLocation>()
 
@@ -92,9 +91,7 @@ extension LocationService: CLLocationManagerDelegate {
     // Handles user location updates
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let userLocation = locations.first else { return }
-//        locationServiceDelegate.userLocationDidUpdate(userLocation)
         userLocations.onNext(userLocation)
-        print("Updated locations: \(locations)")
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
