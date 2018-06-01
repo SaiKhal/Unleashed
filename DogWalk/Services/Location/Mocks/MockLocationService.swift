@@ -12,8 +12,15 @@ import RxCocoa
 import CoreLocation
 
 class MockLocationService: LocationProvider {
+    
     var locationManager: LocationManager
     var userLocations = PublishSubject<CLLocation>()
+    var currentCoordinate: Observable<CLLocationCoordinate2D> {
+        return userLocations
+            .asObserver()
+            .map({$0.coordinate})
+            .share()
+    }
     
     required init(manager: LocationManager) {
         self.locationManager = manager

@@ -12,13 +12,14 @@ import RxCocoa
 import CoreLocation
 
 protocol LocationProvider {
-    var locationManager: LocationManager { get set }
-    var userLocations: PublishSubject<CLLocation> { get set }
+    var locationManager: LocationManager { get }
+    var userLocations: PublishSubject<CLLocation> { get }
+    var currentCoordinate: Observable<CLLocationCoordinate2D> { get }
     
     init(manager: LocationManager)
     func checkForLocationServices()
 }
 
 protocol HasLocationProvider {
-    var locationProvider: LocationProvider { get set }
+    var locationProvider: LocationProvider { get }
 }

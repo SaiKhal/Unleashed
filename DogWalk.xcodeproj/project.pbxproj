@@ -42,6 +42,10 @@
 		C424F6C620A9D08C001BDB80 /* MockLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C424F6C420A9D08C001BDB80 /* MockLocationManager.swift */; };
 		C424F6C820A9D0AE001BDB80 /* MockLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C424F6C720A9D0AE001BDB80 /* MockLocationService.swift */; };
 		C424F6C920A9D0AE001BDB80 /* MockLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C424F6C720A9D0AE001BDB80 /* MockLocationService.swift */; };
+		C48DAE6720C05FB100B78AC6 /* Marker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48DAE6620C05FB100B78AC6 /* Marker.swift */; };
+		C48DAE6920C06D6900B78AC6 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48DAE6820C06D6900B78AC6 /* Route.swift */; };
+		C48DAE7020C0E78200B78AC6 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48DAE6F20C0E78200B78AC6 /* ViewModelType.swift */; };
+		C48DAE7120C0E7FD00B78AC6 /* Marker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48DAE6620C05FB100B78AC6 /* Marker.swift */; };
 		DABD7930463A8D1C910AE980 /* Pods_DogWalk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0053BB6FD59CEF67AFCCDD4B /* Pods_DogWalk.framework */; };
 /* End PBXBuildFile section */
 
@@ -85,6 +89,9 @@
 		C424F6C020A9CFF7001BDB80 /* LocationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProvider.swift; sourceTree = "<group>"; };
 		C424F6C420A9D08C001BDB80 /* MockLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLocationManager.swift; sourceTree = "<group>"; };
 		C424F6C720A9D0AE001BDB80 /* MockLocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLocationService.swift; sourceTree = "<group>"; };
+		C48DAE6620C05FB100B78AC6 /* Marker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Marker.swift; sourceTree = "<group>"; };
+		C48DAE6820C06D6900B78AC6 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		C48DAE6F20C0E78200B78AC6 /* ViewModelType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		C8BF244C8C31665166D23143 /* Pods-DogWalk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DogWalk.release.xcconfig"; path = "Pods/Target Support Files/Pods-DogWalk/Pods-DogWalk.release.xcconfig"; sourceTree = "<group>"; };
 		E02DE9B9940FE7FF3C4D2EA3 /* Pods-DogWalk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DogWalk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DogWalk/Pods-DogWalk.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -155,11 +162,14 @@
 				C424F6AF20A66F3A001BDB80 /* AppDelegate */,
 				C424F6B020A66F54001BDB80 /* Coordinator */,
 				C424F6AE20A66F2B001BDB80 /* Map */,
-				C424F6B820A8AB40001BDB80 /* Dependecies */,
+				C424F6B820A8AB40001BDB80 /* Services */,
+				C48DAE6D20C0E6D200B78AC6 /* Util */,
+				C48DAE6C20C0E6C900B78AC6 /* Models */,
 				C40BBC4020A5E8A20039DB38 /* Assets.xcassets */,
 				C40BBC4220A5E8A20039DB38 /* LaunchScreen.storyboard */,
 				C40BBC4520A5E8A20039DB38 /* Info.plist */,
 				C424F6B920A9C6C8001BDB80 /* File.swift */,
+				C48DAE7220C0E80800B78AC6 /* ViewModel */,
 			);
 			path = DogWalk;
 			sourceTree = "<group>";
@@ -196,6 +206,7 @@
 		C424F6AE20A66F2B001BDB80 /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				C48DAE6620C05FB100B78AC6 /* Marker.swift */,
 				C424F69520A63EC2001BDB80 /* MapVCCoordinator.swift */,
 				C40BBC3B20A5E8A00039DB38 /* MapViewController.swift */,
 				C424F6AB20A65C11001BDB80 /* MapView.swift */,
@@ -230,12 +241,12 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		C424F6B820A8AB40001BDB80 /* Dependecies */ = {
+		C424F6B820A8AB40001BDB80 /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				C424F6BC20A9CF61001BDB80 /* Location */,
 			);
-			path = Dependecies;
+			path = Services;
 			sourceTree = "<group>";
 		};
 		C424F6BC20A9CF61001BDB80 /* Location */ = {
@@ -264,6 +275,29 @@
 				C424F6C420A9D08C001BDB80 /* MockLocationManager.swift */,
 			);
 			path = Mocks;
+			sourceTree = "<group>";
+		};
+		C48DAE6C20C0E6C900B78AC6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C48DAE6820C06D6900B78AC6 /* Route.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C48DAE6D20C0E6D200B78AC6 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		C48DAE7220C0E80800B78AC6 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C48DAE6F20C0E78200B78AC6 /* ViewModelType.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -456,15 +490,18 @@
 				C424F6AC20A65C11001BDB80 /* MapView.swift in Sources */,
 				C424F6C520A9D08C001BDB80 /* MockLocationManager.swift in Sources */,
 				C40BBC3C20A5E8A00039DB38 /* MapViewController.swift in Sources */,
+				C48DAE6920C06D6900B78AC6 /* Route.swift in Sources */,
 				C424F6BE20A9CF7E001BDB80 /* LocationManager.swift in Sources */,
 				C424F69620A63EC2001BDB80 /* MapVCCoordinator.swift in Sources */,
 				C424F69420A63A7A001BDB80 /* AppCoordinator.swift in Sources */,
 				C424F6BA20A9C6C8001BDB80 /* File.swift in Sources */,
+				C48DAE7020C0E78200B78AC6 /* ViewModelType.swift in Sources */,
 				C424F69820A63F17001BDB80 /* AuthCoordinator.swift in Sources */,
 				C40BBC3A20A5E8A00039DB38 /* AppDelegate.swift in Sources */,
 				C424F6C120A9CFF7001BDB80 /* LocationProvider.swift in Sources */,
 				C424F68E20A62F08001BDB80 /* Coordinator.swift in Sources */,
 				C424F6B220A66F91001BDB80 /* LocationService.swift in Sources */,
+				C48DAE6720C05FB100B78AC6 /* Marker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -475,6 +512,7 @@
 				C40BBC4F20A5E8A20039DB38 /* CoordinatorSpec.swift in Sources */,
 				C424F69220A63749001BDB80 /* AppCoordinatorSpec.swift in Sources */,
 				C424F6BF20A9CF7E001BDB80 /* LocationManager.swift in Sources */,
+				C48DAE7120C0E7FD00B78AC6 /* Marker.swift in Sources */,
 				C424F6C620A9D08C001BDB80 /* MockLocationManager.swift in Sources */,
 				C424F69C20A63FA5001BDB80 /* Coordinator.swift in Sources */,
 				C424F6AD20A65C11001BDB80 /* MapView.swift in Sources */,

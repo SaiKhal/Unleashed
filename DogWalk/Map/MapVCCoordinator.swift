@@ -19,8 +19,8 @@ final class MapVCCoordinator: Coordinator {
         self.navigationController = navigationController
         self.dependencies = dependency
         
-        let locationProvider = dependency.locationProvider
-        let viewModel = MapViewModel(locationService: locationProvider)
+        let viewModelServices = MapViewModelServices(locationService: dependency.locationProvider)
+        let viewModel = MapViewModel2(services: viewModelServices)
         mapViewController = MapViewController(viewModel: viewModel)
         
         //mapViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(mapViewController.recordMovement))

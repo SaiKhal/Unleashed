@@ -16,10 +16,15 @@ import RxCocoa
 class LocationService: NSObject, LocationProvider {
     
     // MARK: - Properties
-    var locationManager: LocationManager
-    var userLocations = PublishSubject<CLLocation>()
+    private(set) var locationManager: LocationManager
+    private(set) var userLocations = PublishSubject<CLLocation>()
 
-//    var rx_locations = Observable.never()
+    lazy var currentCoordinate: Observable<CLLocationCoordinate2D> = {
+        return userLocations
+            .asObserver()
+            .map({$0.coordinate})
+            .share()
+    }()
     
     // MARK: - Inits
     required init(manager: LocationManager = CLLocationManager()) {
