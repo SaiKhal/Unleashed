@@ -10,24 +10,7 @@ import UIKit
 import MapKit
 import RxSwift
 import RxCocoa
-
-protocol MapViewData {
-    var locationService: LocationProvider { get set }
-    var regionArea: Double { get set }
-}
-
-class MapViewModel {
-    
-    var locationService: LocationProvider
-    var regionArea: Double
-    
-    init(locationService: LocationProvider) {
-        self.locationService = locationService
-        self.regionArea = 0.02 //my default value
-    }
-    
-}
-
+import RxMKMapView
 
 class MapViewController: UIViewController {
     // MARK: - Views
@@ -39,22 +22,7 @@ class MapViewController: UIViewController {
     
     // MARK: - Properties
     var viewModel: MapViewModelType
-    var recordedCoords = PublishSubject<CLLocationCoordinate2D>()
-    var placedPins = PublishSubject<MapMarker>()
-    
-    var pathCoords: Observable<[CLLocationCoordinate2D]> {
-        return recordedCoords
-            .asObservable()
-            .scan([CLLocationCoordinate2D]()) { list, coord in
-                return list + [coord]
-        }
-    }
-    
     let bag = DisposeBag()
-    
-    var buttonPressed: Observable<Void> {
-        return navigationItem.rightBarButtonItems![1].rx.tap.asObservable()
-    }
     
     // MARK: - Inits
     init(viewModel: MapViewModelType) {
@@ -84,7 +52,7 @@ class MapViewController: UIViewController {
     
     // MARK: - Bindings
     func bind(to viewModel: MapViewModelType) {
-       
+        
         // View Model Inputs
         startButton.rx.tap
             .debug("start tapped")
@@ -98,102 +66,43 @@ class MapViewController: UIViewController {
         
         bathroomButton.rx.tap
             .debug("bathroom tapped")
+            .map({MarkerType.bathroom})
             .bind(to: viewModel.bathroomButtonDidTap)
             .disposed(by: bag)
         
         tiredButton.rx.tap
             .debug("tired tapped")
+            .map({MarkerType.exhaustion})
             .bind(to: viewModel.tiredButtonDidTap)
             .disposed(by: bag)
         
         // View Model Outputs
-        viewModel.locationService.currentCoordinate
-            .takeUntil(viewModel.stopButtonSelected.asObservable())
-            .drive
+        viewModel.startButtonSelected
+            .drive(onNext: renderRoute)
+            .disposed(by: bag)
         
-        
-    }
-    
-    /*
-        userLocations
-     */
-    
-    private func record() {
-        viewModel.locationService.userLocations
-            .takeUntil(buttonPressed)
-            .subscribe(onNext: { location in
-                let coord = location.coordinate
-                self.recordedCoords.onNext(coord)
-                print("adding to movement path")
-            })
+        viewModel.stopButtonSelected
+            .drive(onNext: saveRoute)
             .disposed(by: bag)
     }
     
-    private func renderPath() {
-        recordedCoords
-            .asObservable()
-            .scan([CLLocationCoordinate2D]()) { list, coord in
-                return list + [coord]
-            }
-            .asDriver(onErrorJustReturn: [kCLLocationCoordinate2DInvalid])
-            .drive(onNext: { coords in
-                let polygon = MKPolygon(coordinates: coords, count: coords.count)
-                self.contentView.mapView.add(polygon)
+    // MARK: - ViewModel Outlet Methods
+    private func saveRoute() {
+        removeMapOverlays()
+        removeMapAnnotations()
+    }
+    
+    private func renderRoute() {
+        viewModel.currentRoute
+            .drive(onNext: { route in
+            let coords = route.coordinates
+            let polygon = MKPolygon(coordinates: coords, count: coords.count)
+            self.contentView.mapView.removeOverlays(self.contentView.mapView.overlays)
+                
+            self.contentView.mapView.add(polygon)
+            self.contentView.mapView.addAnnotations(route.pins)
             })
             .disposed(by: bag)
-    }
-    
-    
-    
-    
-    @objc func tiredButtonPressed() {
-        recordedCoords
-            .asObservable()
-            .take(1)
-            .asDriver(onErrorJustReturn: kCLLocationCoordinate2DInvalid)
-            .drive(onNext: { location in
-                print("placing pin")
-                self.placedPins.onNext(MarkerType.exhaustion.create(at: location))
-            })
-    }
-    
-    @objc func bathroomButtonPressed() {
-        recordedCoords
-            .asObservable()
-            .take(1)
-            .asDriver(onErrorJustReturn: kCLLocationCoordinate2DInvalid)
-            .drive(onNext: { location in
-                print("placing pin")
-                self.placedPins.onNext(MarkerType.bathroom.create(at: location))
-            })
-    }
-    
-   
-    func placePins() {
-        placedPins
-            .asObservable()
-            .subscribe(onNext: { marker in
-                self.contentView.mapView.addAnnotation(marker)
-            })
-    }
-    
-    func placePin(at coord: CLLocationCoordinate2D, markerType: MarkerType) {
-        let marker = markerType.create(at: coord)
-        contentView.mapView.addAnnotation(marker)
-    }
-    
-    @objc func recordMovement() {
-        print("Tracking Locations")
-        
-        /*
-         This function starts tracking the user location and creates a map overlay for it.
-         It no overlay exist, this function should create one.
-         If overlay already exist, each new location should be added to the already created overlay.
-         */
-        
-        record()
-        renderPath()
-        placePins()
     }
     
     func setMapRegionAroundUserLocation() {
@@ -208,12 +117,24 @@ class MapViewController: UIViewController {
     }
     
     func setMapRegion(around location: CLLocation) {
-//        let regionArea = viewModel.regionArea // smaller is more zoomed in
-//        let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-//        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: regionArea, longitudeDelta: regionArea))
-//        contentView.mapView.setRegion(region, animated: true)
+                let regionArea = 0.02 // smaller is more zoomed in
+                let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: regionArea, longitudeDelta: regionArea))
+                contentView.mapView.setRegion(region, animated: true)
     }
     
+}
+
+extension MapViewController {
+    func removeMapAnnotations() {
+        let allAnnotations = self.contentView.mapView.annotations
+        self.contentView.mapView.removeAnnotations(allAnnotations)
+    }
+    
+    func removeMapOverlays() {
+        let allOverlays = self.contentView.mapView.overlays
+        self.contentView.mapView.removeOverlays(allOverlays)
+    }
 }
 
 extension MapViewController: MKMapViewDelegate {
@@ -269,4 +190,3 @@ extension MKMapView {
         return view
     }
 }
-

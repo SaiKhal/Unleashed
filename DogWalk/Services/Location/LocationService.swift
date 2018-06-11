@@ -19,11 +19,10 @@ class LocationService: NSObject, LocationProvider {
     private(set) var locationManager: LocationManager
     private(set) var userLocations = PublishSubject<CLLocation>()
 
-    lazy var currentCoordinate: Observable<CLLocationCoordinate2D> = {
+    lazy var currentCoordinate: Driver<CLLocationCoordinate2D> = {
         return userLocations
-            .asObserver()
             .map({$0.coordinate})
-            .share()
+            .asDriver(onErrorJustReturn: kCLLocationCoordinate2DInvalid)
     }()
     
     // MARK: - Inits

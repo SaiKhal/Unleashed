@@ -9,6 +9,7 @@ target 'DogWalk' do
 	pod 'SnapKit', '~> 4.0'
 	pod 'RxSwift',    '~> 4.0'
 	pod 'RxCocoa',    '~> 4.0'
+	pod "RxMKMapView"
   target 'DogWalkTests' do
     inherit! :search_paths
     # Pods for testing

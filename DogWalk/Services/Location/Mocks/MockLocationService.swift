@@ -15,12 +15,11 @@ class MockLocationService: LocationProvider {
     
     var locationManager: LocationManager
     var userLocations = PublishSubject<CLLocation>()
-    var currentCoordinate: Observable<CLLocationCoordinate2D> {
+    lazy var currentCoordinate: Driver<CLLocationCoordinate2D> = {
         return userLocations
-            .asObserver()
             .map({$0.coordinate})
-            .share()
-    }
+            .asDriver(onErrorJustReturn: kCLLocationCoordinate2DInvalid)
+    }()
     
     required init(manager: LocationManager) {
         self.locationManager = manager

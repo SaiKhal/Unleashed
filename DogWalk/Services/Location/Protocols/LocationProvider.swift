@@ -14,7 +14,7 @@ import CoreLocation
 protocol LocationProvider {
     var locationManager: LocationManager { get }
     var userLocations: PublishSubject<CLLocation> { get }
-    var currentCoordinate: Observable<CLLocationCoordinate2D> { get }
+    var currentCoordinate: Driver<CLLocationCoordinate2D> { get }
     
     init(manager: LocationManager)
     func checkForLocationServices()

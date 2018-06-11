@@ -18,3 +18,9 @@ struct Route: Mappable {
     var coordinates = [CLLocationCoordinate2D]()
     var pins = [MapMarker]()
 }
+
+enum RouteData {
+    case coord([CLLocationCoordinate2D])
+    case pins(MapMarker)
+    case error(String)
+}
