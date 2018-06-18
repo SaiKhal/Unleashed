@@ -77,16 +77,15 @@ class MapViewController: UIViewController {
             .disposed(by: bag)
         
         // View Model Outputs
-        viewModel.startButtonSelected
+        viewModel.startButtonTapped
             .drive(onNext: startRecording)
             .disposed(by: bag)
         
-        viewModel.stopButtonSelected
+        viewModel.stopButtonTapped
             .drive(onNext: saveRoute)
             .disposed(by: bag)
         
         viewModel.currentRoute
-            .debug("current Route output")
             .drive(onNext: renderRoute)
             .disposed(by: bag)
         
@@ -98,34 +97,34 @@ class MapViewController: UIViewController {
     
     // MARK: - ViewModel Outlet Methods
     private func startRecording() {
-        print("SUBSCRIBE HERE")
-//        viewModel.currentRoute
-//            .drive(onNext: renderRoute)
-//            .disposed(by: bag)
-    }
+//            viewModel.locationService.currentCoordinate.asObservable()
+//                .withLatestFrom(viewModel.isRecording) { ($0, $1) }
+//                .takeWhile({ tuple -> Bool in
+//                    let isNotRecording = tuple.1
+//                    print(isNotRecording)
+//                    return isNotRecording
+//                })
+//                .map({$0.0})
+//                .scan([CLLocationCoordinate2D]()) { list, coord in
+//                    print("Adding new coord to list")
+//                    return list + [coord]
+//                }
+//                .debug()
+//                .asDriver(onErrorJustReturn: [kCLLocationCoordinate2DInvalid])
+//                .drive(onNext: { coords in
+////                    doSomethingWithCoords(coords)
+//                    let polygon = MKPolygon(coordinates: coords, count: coords.count)
+//                    self.contentView.mapView.removeOverlays(self.contentView.mapView.overlays)
+//                    self.contentView.mapView.add(polygon)
+//                })
+//                .disposed(by: bag)
+        }
     
     private func saveRoute() {
         print("Removing map stuff")
         removeMapOverlays()
         removeMapAnnotations()
     }
-    
-//    private func renderPath() {
-//        viewModel.locationService.currentCoordinate.asObservable()
-//            .takeUntil(viewModel.stopButtonSelected.asObservable())
-//            .scan([CLLocationCoordinate2D]()) { list, coord in
-//                print("Adding to list")
-//                return list + [coord]
-//            }
-//            .debug()
-//            .asDriver(onErrorJustReturn: [kCLLocationCoordinate2DInvalid])
-//            .drive(onNext: { coords in
-//                let polygon = MKPolygon(coordinates: coords, count: coords.count)
-//                self.contentView.mapView.removeOverlays(self.contentView.mapView.overlays)
-//                self.contentView.mapView.add(polygon)
-//            })
-//            .disposed(by: bag)
-//    }
     
     private func renderRoute(_ route: Mappable) {
             let coords = route.coordinates
