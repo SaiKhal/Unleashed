@@ -100,17 +100,8 @@ extension LocationService: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Error \(error)")
+        userLocations.onError(error)
     }
-    
-    func streamLocation(_ location: CLLocation) -> Observable<CLLocation> {
-        return Observable.create({ (observer) -> Disposable in
-            observer.onNext(location)
-            observer.onCompleted()
-            
-            return Disposables.create()
-        })
-    }
-    
     
 }
 

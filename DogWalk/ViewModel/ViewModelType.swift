@@ -16,6 +16,7 @@ protocol MapViewModelTypeInputsType {
     var bathroomButtonDidTap: PublishSubject<MarkerType> { get }
     var startButtonDidTap: PublishSubject<Void> { get }
     var stopButtonDidTap: PublishSubject<Void> { get }
+    var coordinates: PublishSubject<CLLocationCoordinate2D> { get }
 }
 
 protocol MapViewModelTypeOutputsType {
@@ -38,6 +39,7 @@ class MapViewModel2: MapViewModelType {
     var bathroomButtonDidTap = PublishSubject<MarkerType>()
     var startButtonDidTap = PublishSubject<Void>()
     var stopButtonDidTap = PublishSubject<Void>()
+    var coordinates: PublishSubject<CLLocationCoordinate2D>
     var regionArea = BehaviorSubject<Double>(value: 0.02)
     
     // MARK: - Outputs
@@ -55,6 +57,10 @@ class MapViewModel2: MapViewModelType {
     }
     
     private var coordinates: Observable<CLLocationCoordinate2D> {
+        
+        Observable.create { observer in
+            <#code#>
+        }
         return locationService.currentCoordinate.asObservable()
     }
     
@@ -76,28 +82,30 @@ class MapViewModel2: MapViewModelType {
     let bag = DisposeBag()
     
     // MARK: - Private
-    var routeLocations: Observable<[CLLocationCoordinate2D]> {
+    lazy var routeLocations: Observable<[CLLocationCoordinate2D]> = {
         return Observable
-            .combineLatest(coordinates, startButtonTappedObs)
-            .map({coord, _ in coord})
+            .combineLatest(coordinates, isRecordingObs)
+            .flatMapLatest({ (coords, isRecording) -> Observable<CLLocationCoordinate2D> in
+                guard isRecording else { return .never() }
+                return Observable.just(coords)
+            })
             .scan([CLLocationCoordinate2D]()) { list, coord in
                 print("Adding to list")
                 return list + [coord]
         }
-    }
+    }()
     
-    var routeMarkers: Observable<[MapMarker]> {
+    lazy var routeMarkers: Observable<[MapMarker]> = {
         return mapMarkers
             .withLatestFrom(coordinates) { markerType, location in markerType.create(at: location)}
             .scan([MapMarker]()) { list, marker in
                 return list + [marker]
             }
             .startWith([])
-    }
+    }()
     
     // MARK: - Init
     init(services: MapViewModelServicesType) {
-        
         // MARK: - Services
         self.locationService = services.locationService
         
@@ -117,93 +125,29 @@ class MapViewModel2: MapViewModelType {
             .asDriver(onErrorJustReturn: false)
         
         // MARK: - Private
-        self.currentRoute = Observable.combineLatest(routeLocations, routeMarkers, isRecordingObs)
-            .takeWhile({ (_, _, isRecording) in isRecording })
-            .map({ (locations, markers, isRecording) in
+        self.currentRoute = Observable
+            .combineLatest(routeLocations, routeMarkers, isRecordingObs)
+            .flatMapLatest({ (arg) -> Observable<([CLLocationCoordinate2D], [MapMarker], Bool)> in
+                let (coords, markers, isRecording) = arg
+                guard isRecording else { return .never() }
+                return Observable
+                    .combineLatest(Observable.just(coords),
+                                   Observable.just(markers),
+                                   Observable.just(isRecording))
+            })
+            .map({ (locations, markers, _) -> Mappable in
                 print("routing")
                 let route = Route(coordinates: locations, pins: markers)
                 return route
             })
-            .asDriver(onErrorJustReturn: Route())
+            .asDriver(onErrorJustReturn: Route()) as SharedSequence<DriverSharingStrategy, Mappable>
+
         
-        
-        
-        // MARK: - Inputs
-        //        let _ = startButtonTapped
-        //            .do(onNext: startRecording)
-        //
-        //        let _ = stopButtonTapped
-        //            .withLatestFrom(currentRoute)
-        //            .do(onNext: { route in
-        //                let uuid = UUID()
-        //                print("SAVING ROUTE with UUID: \(uuid.uuidString)")
-        //                self.routes[uuid] = route
-        //            })
-        //
-        //
+        startButtonDidTap
+            .asObservable()
+            .subscribe(onNext: {print("TAPPED")})
+            .disposed(by: bag)
     }
-    
-    func route(coordinates: Observable<CLLocationCoordinate2D>,
-               startButtonTapped: Observable<Void>,
-               stopButtonTapped: Observable<Void>,
-               mapInputs: [PublishSubject<MarkerType>]) -> Driver<Mappable> {
-        
-        let routeLocations = Observable
-            .combineLatest(coordinates, startButtonTapped)
-            .map({coord, _ in coord})
-            .scan([CLLocationCoordinate2D]()) { list, coord in
-                print("Adding to list")
-                return list + [coord]
-        }
-        
-        let routeMarkers = Observable
-            .from(mapInputs)
-            .merge()
-            .withLatestFrom(coordinates) { markerType, location in
-                return markerType.create(at: location)
-            }
-            .scan([MapMarker]()) { list, marker in
-                return list + [marker]
-            }
-            .startWith([])
-        
-        let route: Driver<Mappable> = Observable.combineLatest(routeLocations, routeMarkers)
-            .map({ (locations, markers) in
-                print("routing")
-                let route = Route(coordinates: locations, pins: markers)
-                return route
-            })
-            .takeUntil(stopButtonTapped)
-            .asDriver(onErrorJustReturn: Route())
-        
-        return route
-    }
-    
-    //    func resetRoute(coordinates: Observable<CLLocationCoordinate2D>,
-    //                    startButtonTapped: Observable<Void>,
-    //                    stopButtonTapped: Observable<Void>,
-    //                    mapInputs: [PublishSubject<MarkerType>]) {
-    //
-    //        self.routeLocations = Observable
-    //            .combineLatest(coordinates, startButtonTapped)
-    //            .map({coord, _ in coord})
-    //            .scan([CLLocationCoordinate2D]()) { list, coord in
-    //                print("Adding to list")
-    //                return list + [coord]
-    //        }
-    //
-    //        self.routeMarkers = Observable
-    //            .from(mapInputs)
-    //            .merge()
-    //            .withLatestFrom(coordinates) { markerType, location in
-    //                return markerType.create(at: location)
-    //            }
-    //            .scan([MapMarker]()) { list, marker in
-    //                return list + [marker]
-    //            }
-    //            .startWith([])
-    //    }
-    
     
 }
 
